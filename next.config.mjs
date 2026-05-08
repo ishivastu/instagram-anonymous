@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
+  images: {
+    domains: ["i.imgur.com", "upload.wikimedia.org", "static.cdninstagram.com"],
+  },
 };
 
 export default nextConfig;
