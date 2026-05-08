@@ -1,15 +1,15 @@
 "use client";
 
 import React from "react";
-import "./globals.css";
+import "../globals.css";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
-import Link from "next/link";
 
-export default function Home() {
+export default function Signup() {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const [data, setData] = React.useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -18,7 +18,8 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/login", data);
+      const response = await axios.post("/api/signup", data);
+
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -27,31 +28,33 @@ export default function Home() {
 
   return (
     <main className="flex align-items-center justify-content-center">
-      {/* Mobile Image */}
-
-      {/* Auth Section */}
       <section id="auth" className="flex direction-column">
         <div className="panel login flex direction-column">
-          <h1 title="Instagram" className="flex justify-content-center">
-            <img src="/img/instagram-logo.png" alt="Instagram logo" />
+          <h1 className="flex justify-content-center">
+            <img src="/img/instagram-logo.png" alt="Instagram" />
           </h1>
 
           <form onSubmit={handleSubmit}>
             <input
-              name="email"
-              value={data.email}
-              onChange={(e) => setData({ ...data, email: e.target.value })}
-              placeholder="Phone number, username, or email"
+              type="text"
+              placeholder="Username"
+              value={data.username}
+              onChange={(e) => setData({ ...data, username: e.target.value })}
             />
 
-            {/* Password */}
+            <input
+              type="email"
+              placeholder="Email"
+              value={data.email}
+              onChange={(e) => setData({ ...data, email: e.target.value })}
+            />
+
             <div className="password-box">
               <input
-                name="password"
                 type={showPassword ? "text" : "password"}
+                placeholder="Password"
                 value={data.password}
                 onChange={(e) => setData({ ...data, password: e.target.value })}
-                placeholder="Password"
               />
 
               <button
@@ -63,38 +66,15 @@ export default function Home() {
               </button>
             </div>
 
-            <button type="submit">Log In</button>
+            <button type="submit">Sign Up</button>
           </form>
-
-          {/* Separator */}
-          <div className="flex separator align-items-center">
-            <span></span>
-
-            <div className="or">OR</div>
-
-            <span></span>
-          </div>
-
-          {/* Facebook Login */}
-          <div className="login-with-fb flex direction-column align-items-center">
-            <div>
-              <img src="/img/facebook-icon.jpg" alt="facebook" />
-
-              <Link href="#">Log in with Facebook</Link>
-            </div>
-
-            <Link href="/forgot">Forgot password?</Link>
-          </div>
         </div>
 
-        {/* Register */}
         <div className="panel register flex justify-content-center">
-          <p>Don't have an account?</p>
+          <p>Already have an account?</p>
 
-          <Link href="/signup">Sign up</Link>
+          <a href="/">Log in</a>
         </div>
-
-        {/* App Download */}
         <div className="app-download flex direction-column align-items-center">
           <p>Get the app.</p>
 

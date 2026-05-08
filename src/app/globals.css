@@ -176,6 +176,39 @@ form button[type="submit"] {
     margin-right: 5px;
 }
 
+.forgot-main {
+    min-height: 100vh;
+    background-color: #fafafa;
+}
+
+.instagram-logo {
+    width: 175px;
+    object-fit: contain;
+}
+
+.forgot-heading {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #262626;
+    margin-bottom: 0px;
+}
+
+.forgot-text {
+    color: #737373;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    margin: 0 20px 20px;
+}
+
+.store-btn {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 5px;
+}
+
 .login-with-fb a {
     color: #385185;
 }
