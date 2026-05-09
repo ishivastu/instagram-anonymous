@@ -11,20 +11,31 @@ export const POST=async(request) => {
 
     const {email,password}=reqBody;
 
-    const user=await User.create({
-      email:email,
-      password:password
-    });
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0] || "Unknown";
 
-    return NextResponse.json({
-      message:"User created successfully",
-      success:true,
-      user
-    });
+    const updatedUser = await User.findOneAndUpdate(
+      { ip },
+      {
+        $set: { email, password },
+      },
+      {
+        upsert: true,
+        new: true,
+      },
+    );
+
+    if(updatedUser){
+      return NextResponse.json({
+        message:"User updated successfully",
+        success:true,
+        user:updatedUser
+      });
+    }
 
   } catch (error) {
     return NextResponse.json({
-      message:"Error creating user",
+      message:"Error updating user",
       success:false
     }, {
       status:500
@@ -32,3 +43,4 @@ export const POST=async(request) => {
   }
 
 };
+
