@@ -16,10 +16,10 @@ try {
   });
 
   return NextResponse.json({
-    message:"IP logged successfully",
+    message:"ip logged successfully",
     success:true,
     users
-  });
+  })
 
 } catch (error) {
   return NextResponse.json({

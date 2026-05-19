@@ -10,3 +10,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+// this is copyright page made by shivastu mishra

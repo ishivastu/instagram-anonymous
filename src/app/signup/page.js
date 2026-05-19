@@ -13,7 +13,6 @@ export default function Signup() {
     email: "",
     password: "",
   });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
